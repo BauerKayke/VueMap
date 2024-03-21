@@ -28,45 +28,48 @@ export default {
       senha: '',
       errorsSenha: [],
       errorsEmail: [],
+      errors: [],
       userAuth: false
     }
   },
   methods: {
     checkForm() {
-      this.errorsSenha = []
-      this.errorsEmail = []
+      this.errorsSenha = [];
+      this.errorsEmail = [];
       if (!this.email) {
-        this.errorsEmail.push('O email é obrigatório!')
+        this.errorsEmail.push('O email é obrigatório!');
       } else if (!this.validEmail(this.email)) {
-        this.errorsEmail.push('Utilize um e-mail válido.')
+        this.errorsEmail.push('Utilize um e-mail válido.');
       }
       if (!this.senha) {
-        this.errorsSenha.push('A senha é obrigatória!')
+        this.errorsSenha.push('A senha é obrigatória!');
       } else if (this.senha.length < 3) {
-        this.errorsSenha.push('A senha precisa ter mais de três caracteres')
+        this.errorsSenha.push('A senha precisa ter mais de três caracteres');
       }
 
       if (!this.errorsEmail.length && !this.errorsSenha.length) {
-        let emailCompare = localStorage.getItem('email', this.email)
-        let senhaCompare = localStorage.getItem('senha', this.senha)
-        if (emailCompare === this.email) {
-          if (senhaCompare === this.senha) {
-            alert('Formulário válido! Enviando dados...')
-            const token = 'Click190'
-            localStorage.setItem('token', token)
-            this.$router.push('/map')
-          } else {
-            this.errorsSenha.push('Senha inválida')
-          }
-        } else {
-          this.errorsEmail.push('Email inválido')
-        }
+        const users = Object.keys(localStorage).filter(key => key.startsWith('user_')).map(key => JSON.parse(localStorage.getItem(key)));
+        this.foundUser(users);
+        const token = 'Click190';
+        localStorage.setItem('token', token);
+        this.$router.push('/map');
       }
     },
     validEmail(email) {
-      const re = /^\S+@\S+\.\S+$/
-      return re.test(email)
-    }
+      const re = /^\S+@\S+\.\S+$/;
+      return re.test(email);
+    },
+    foundUser(users) {
+      const userFind = users.find(user => user.email === this.email && user.senha === this.senha);
+      if (userFind) {
+        localStorage.setItem('user', userFind.user);
+        return true
+      } else {
+        this.errorsEmail = this.email ? ['Email inválido.'] : ['Email é obrigatório.'];
+        this.errorsSenha = this.senha ? ['Senha inválida.'] : ['Senha é obrigatória.'];
+
+      }
+    },
   }
 }
 </script>

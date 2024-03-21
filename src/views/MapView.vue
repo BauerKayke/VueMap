@@ -1,15 +1,11 @@
 <template>
   <div>
     <div class="nav">
-      <button @click="goOut"><svg-icon type="mdi" :path="path"></svg-icon></button>
+      <button @click="goOut" class="goOut"><svg-icon type="mdi" :path="path" style="color: white;"></svg-icon></button>
 
       <div class="search-box">
-        <GMapAutocomplete
-          placeholder="Search for a location"
-          @place_changed="setPlace"
-          style="font-size: medium"
-          class="searchLocation"
-        >
+        <GMapAutocomplete placeholder="Search for a location" @place_changed="setPlace" style="font-size: medium"
+          class="searchLocation">
         </GMapAutocomplete>
       </div>
       <div class="user">
@@ -18,27 +14,17 @@
     </div>
 
     <GMapMap :center="coords" :zoom="10" map-type-id="terrain" style="width: 90vw; height: 90vh">
-      <GMapMarker
-        :key="markerDetails.id"
-        :position="markerDetails.position"
-        :clickable="true"
-        :draggable="false"
-        @click="openMarker(markerDetails.id)"
-      >
-        <GMapInfoWindow
-          v-if="locationDetails.address != ''"
-          :closeclick="true"
-          @closeclick="openMarker(null)"
-          :opened="openedMarkerID === markerDetails.id"
-          :options="{
-            pixelOffset: {
-              width: 10,
-              height: 0
-            },
-            maxWidth: 320,
-            maxHeight: 320
-          }"
-        >
+      <GMapMarker :key="markerDetails.id" :position="markerDetails.position" :clickable="true" :draggable="false"
+        @click="openMarker(markerDetails.id)">
+        <GMapInfoWindow v-if="locationDetails.address != ''" :closeclick="true" @closeclick="openMarker(null)"
+          :opened="openedMarkerID === markerDetails.id" :options="{
+        pixelOffset: {
+          width: 10,
+          height: 0
+        },
+        maxWidth: 320,
+        maxHeight: 320
+      }">
           <div class="location-details">
             <h3>Location Details</h3>
             <p>Address: {{ locationDetails.address }}</p>
@@ -54,14 +40,13 @@ import { onMounted, ref } from 'vue'
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiExitToApp } from '@mdi/js'
 
-let user = localStorage.getItem('user')
 
 export default {
   name: 'Map',
   data() {
     return {
       path: mdiExitToApp,
-      user
+      user: localStorage.getItem('user')
     }
   },
   components: {
@@ -157,5 +142,11 @@ export default {
 
 p {
   font-size: 20px;
+  color: #fff;
+}
+
+.goOut {
+  background: none;
+  border: none;
 }
 </style>

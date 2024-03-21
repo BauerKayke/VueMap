@@ -1,4 +1,4 @@
-# vue-project
+# Vue-Project
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -33,3 +33,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Project Description
+
+This is a project in which the user accesses a map by going through a login screen with vue.js
