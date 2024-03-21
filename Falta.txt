@@ -1,0 +1,4 @@
+--Fazer sessão para manter autenticação
+
+--Fazer o ponto no mapa
+
