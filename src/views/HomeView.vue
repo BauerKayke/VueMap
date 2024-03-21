@@ -1,12 +1,12 @@
 <script setup>
-import FormLogin from '../components/FormLogin.vue'
-import Title from '../components/Title.vue'
+import FormLogin from '../components/FormLogin.vue';
+import TitleHeader from '../components/TitleHeader.vue';
 </script>
 
 <template>
   <main>
     <div>
-      <Title msg="Welcome to your map" subMsg="Log in to access the map" />
+      <TitleHeader msg="Welcome to your map" subMsg="Log in to access the map" />
     </div>
     <div>
       <FormLogin />

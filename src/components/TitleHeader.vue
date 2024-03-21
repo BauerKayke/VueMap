@@ -8,17 +8,14 @@ defineProps({
     type: String,
     required: true
   }
-})
+});
 </script>
 
 <template>
   <header>
     <div class="divLogo">
-      <img
-        alt="Click190 Logo"
-        class="logo"
-        src="../assets/logo_horizontal-q1yxs8eexmfu9fw80r6cm0oh7ygbfd478vcpnoy5tw.png"
-      />
+      <img alt="Click190 Logo" class="logo"
+        src="../assets/logo_horizontal-q1yxs8eexmfu9fw80r6cm0oh7ygbfd478vcpnoy5tw.png" />
     </div>
 
     <div class="greetings">
@@ -110,6 +107,7 @@ h2 {
 }
 
 @media (min-width: 1100px) {
+
   .greetings h1,
   .greetings h2 {
     text-align: center;

@@ -1,12 +1,12 @@
 <script setup>
-import Register from '../components/Register.vue'
-import Title from '../components/Title.vue'
+import Register from '../components/Register.vue';
+import TitleHeader from '../components/TitleHeader.vue';
 </script>
 
 <template>
   <main class="registerMain">
     <div>
-      <Title msg="Register" subMsg="" />
+      <TitleHeader msg="Register" subMsg=" " />
     </div>
     <div>
       <Register />

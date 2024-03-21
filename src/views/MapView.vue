@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="nav">
-      <button @click="goOut" class="goOut"><svg-icon type="mdi" :path="path" style="color: white;"></svg-icon></button>
+      <button @click="goOut" class="goOut">
+        <svg-icon type="mdi" :path="path" style="color: white"></svg-icon>
+      </button>
 
       <div class="search-box">
         <GMapAutocomplete placeholder="Search for a location" @place_changed="setPlace" style="font-size: medium"
@@ -36,55 +38,54 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
-import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiExitToApp } from '@mdi/js'
-
+import { onMounted, ref } from 'vue';
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiExitToApp } from '@mdi/js';
 
 export default {
-  name: 'Map',
+  name: 'MapView',
   data() {
     return {
       path: mdiExitToApp,
       user: localStorage.getItem('user')
-    }
+    };
   },
   components: {
     SvgIcon
   },
   setup() {
-    const coords = ref({ lat: 51.5072, lng: 0.1276 })
+    const coords = ref({ lat: 51.5072, lng: 0.1276 });
     const markerDetails = ref({
       id: 1,
-      position: coords.value
-    })
-    const openedMarkerID = ref(null)
+      position: coords.value,
+    });
+    const openedMarkerID = ref(null);
     const locationDetails = ref({
       address: '',
       url: ''
-    })
+    });
     const getUserLocation = () => {
-      const isSupported = 'navigator' in window && 'geolocation' in navigator
+      const isSupported = 'navigator' in window && 'geolocation' in navigator;
       if (isSupported) {
         navigator.geolocation.getCurrentPosition((position) => {
-          coords.value.lat = position.coords.latitude
-          coords.value.lng = position.coords.longitude
-        })
+          coords.value.lat = position.coords.latitude;
+          coords.value.lng = position.coords.longitude;
+        });
       }
-    }
+    };
     const setPlace = (place) => {
-      coords.value.lat = place.geometry.location.lat()
-      coords.value.lng = place.geometry.location.lng()
-      locationDetails.value.address = place.formatted_address
-      locationDetails.value.url = place.url
-    }
+      coords.value.lat = place.geometry.location.lat();
+      coords.value.lng = place.geometry.location.lng();
+      locationDetails.value.address = place.formatted_address;
+      locationDetails.value.url = place.url;
+    };
     const openMarker = (id) => {
-      openedMarkerID.value = id
-    }
+      openedMarkerID.value = id;
+    };
 
     onMounted(() => {
-      getUserLocation()
-    })
+      getUserLocation();
+    });
     return {
       coords,
       markerDetails,
@@ -93,15 +94,15 @@ export default {
       getUserLocation,
       setPlace,
       locationDetails
-    }
+    };
   },
   methods: {
     goOut() {
-      localStorage.removeItem('token')
-      this.$router.push('/')
+      localStorage.removeItem('token');
+      this.$router.push('/');
     }
   }
-}
+};
 </script>
 <style scoped>
 .search-box {

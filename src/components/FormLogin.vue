@@ -19,7 +19,6 @@
 </template>
 
 <script>
-console.log('Oi')
 export default {
   name: 'FormularioLogin',
   data() {
@@ -29,8 +28,8 @@ export default {
       errorsSenha: [],
       errorsEmail: [],
       errors: [],
-      userAuth: false
-    }
+      userAuth: false,
+    };
   },
   methods: {
     checkForm() {
@@ -48,7 +47,9 @@ export default {
       }
 
       if (!this.errorsEmail.length && !this.errorsSenha.length) {
-        const users = Object.keys(localStorage).filter(key => key.startsWith('user_')).map(key => JSON.parse(localStorage.getItem(key)));
+        const users = Object.keys(localStorage)
+          .filter((key) => key.startsWith('user_'))
+          .map((key) => JSON.parse(localStorage.getItem(key)));
         this.foundUser(users);
         const token = 'Click190';
         localStorage.setItem('token', token);
@@ -60,18 +61,17 @@ export default {
       return re.test(email);
     },
     foundUser(users) {
-      const userFind = users.find(user => user.email === this.email && user.senha === this.senha);
+      const userFind = users.find((user) => user.email === this.email && user.senha === this.senha);
       if (userFind) {
         localStorage.setItem('user', userFind.user);
-        return true
+        return true;
       } else {
         this.errorsEmail = this.email ? ['Email inválido.'] : ['Email é obrigatório.'];
         this.errorsSenha = this.senha ? ['Senha inválida.'] : ['Senha é obrigatória.'];
-
       }
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>

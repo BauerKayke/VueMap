@@ -27,7 +27,6 @@
 </template>
 
 <script>
-console.log('Oi')
 export default {
   name: 'FormularioLogin',
   data() {
@@ -39,54 +38,54 @@ export default {
       errorsEmail: [],
       errorsUser: [],
       userAuth: false,
-      lastUserId: parseInt(localStorage.getItem('lastUserId') || 0)
-    }
+      lastUserId: parseInt(localStorage.getItem('lastUserId') || 0),
+    };
   },
   methods: {
     checkForm() {
-      let id = 0
-      this.id = id
-      this.errorsSenha = []
-      this.errorsEmail = []
-      this.errorsUser = []
+      let id = 0;
+      this.id = id;
+      this.errorsSenha = [];
+      this.errorsEmail = [];
+      this.errorsUser = [];
       if (!this.user) {
-        this.errorsUser.push('O nome de usuário é obrigatório!')
+        this.errorsUser.push('O nome de usuário é obrigatório!');
       } else if (this.user.length <= 3) {
-        this.errorsUser.push('O nome de usuário precisa ter mais de três caracteres')
+        this.errorsUser.push('O nome de usuário precisa ter mais de três caracteres');
       }
       if (!this.email) {
-        this.errorsEmail.push('O email é obrigatório!')
+        this.errorsEmail.push('O email é obrigatório!');
       } else if (!this.validEmail(this.email)) {
-        this.errorsEmail.push('Utilize um e-mail válido.')
+        this.errorsEmail.push('Utilize um e-mail válido.');
       }
       if (!this.senha) {
-        this.errorsSenha.push('A senha é obrigatória!')
+        this.errorsSenha.push('A senha é obrigatória!');
       } else if (this.senha.length < 3) {
-        this.errorsSenha.push('A senha precisa ter mais de três caracteres')
+        this.errorsSenha.push('A senha precisa ter mais de três caracteres');
       }
 
       if (!this.errorsEmail.length && !this.errorsSenha.length && !this.errorsUser.length) {
-        alert('Formulário válido! Enviando dados...')
-        const userId = ++this.lastUserId
-        localStorage.setItem('lastUserId', userId)
+        alert('Formulário válido! Enviando dados...');
+        const userId = ++this.lastUserId;
+        localStorage.setItem('lastUserId', userId);
         localStorage.setItem(
           `user_${userId}`,
           JSON.stringify({
             id: userId,
             user: this.user,
             email: this.email,
-            senha: this.senha
-          })
-        )
-        this.$router.replace('/')
+            senha: this.senha,
+          }),
+        );
+        this.$router.replace('/');
       }
     },
     validEmail(email) {
-      const re = /^\S+@\S+\.\S+$/
-      return re.test(email)
-    }
-  }
-}
+      const re = /^\S+@\S+\.\S+$/;
+      return re.test(email);
+    },
+  },
+};
 </script>
 
 <style scoped>
