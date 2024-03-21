@@ -65,7 +65,6 @@ export default {
       }
 
       if (!this.errorsEmail.length && !this.errorsSenha.length && !this.errorsUser.length) {
-        alert('Formulário válido! Enviando dados...');
         const userId = ++this.lastUserId;
         localStorage.setItem('lastUserId', userId);
         localStorage.setItem(
