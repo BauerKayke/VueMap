@@ -47,26 +47,29 @@ export default {
       }
 
       if (!this.errorsEmail.length && !this.errorsSenha.length) {
-        const users = Object.keys(localStorage)
+        this.users = Object.keys(localStorage)
           .filter((key) => key.startsWith('user_'))
           .map((key) => JSON.parse(localStorage.getItem(key)));
-        this.foundUser(users);
-        const token = 'Click190';
-        localStorage.setItem('token', token);
-        this.$router.push('/map');
+        if (this.foundUser()) {
+          const token = 'Click190';
+          localStorage.setItem('token', token);
+          this.$router.push('/map');
+        }
+
+
       }
     },
     validEmail(email) {
       const re = /^\S+@\S+\.\S+$/;
       return re.test(email);
     },
-    foundUser(users) {
-      console.log(users);
-      const userFind = users.find((user) => user.email === this.email && user.senha === this.senha);
-      console.log(userFind);
+    foundUser() {
+      this.users = Object.keys(localStorage)
+        .filter((key) => key.startsWith('user_'))
+        .map((key) => JSON.parse(localStorage.getItem(key)));
+      const userFind = this.users.find((user) => user.email === this.email && user.senha === this.senha);
       if (userFind) {
         localStorage.setItem('user', userFind.user);
-
         return true;
       } else {
         this.errorsEmail = this.email ? ['Email inválido.'] : ['Email é obrigatório.'];
@@ -111,7 +114,7 @@ button {
   width: 8vw;
   border-radius: 4px;
   margin-top: 2vh;
-  background-color: hsla(160, 100%, 37%, 1);
+  background-color: #00bd7e;
   color: white;
   font-size: 18px;
   font-weight: bold;

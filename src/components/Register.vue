@@ -9,7 +9,7 @@
     </div>
     <div class="emailDiv">
       <label for="email">Email</label>
-      <input type="email" name="email" v-model="email" placeholder="Digite seu email" />
+      <input type="email" name="email" v-model="email" placeholder="Digite seu email" @input="handleInput" />
       <div class="error" v-if="errorsEmail.length > 0">
         <p v-for="(error, index) in errorsEmail" :key="index">{{ error }}</p>
       </div>
@@ -39,15 +39,26 @@ export default {
       errorsUser: [],
       userAuth: false,
       lastUserId: parseInt(localStorage.getItem('lastUserId') || 0),
+      users: [],
     };
+  },
+  mounted() {
+
+    for (let i = 1; i <= this.lastUserId; i++) {
+      const userData = JSON.parse(localStorage.getItem(`user_${i}`));
+      if (userData) {
+        this.users.push(userData);
+      }
+    }
+    console.log('Usuários salvos:', this.users);
   },
   methods: {
     checkForm() {
-      let id = 0;
-      this.id = id;
+
       this.errorsSenha = [];
       this.errorsEmail = [];
       this.errorsUser = [];
+      this.checkUser();
       if (!this.user) {
         this.errorsUser.push('O nome de usuário é obrigatório!');
       } else if (this.user.length <= 3) {
@@ -83,7 +94,21 @@ export default {
       const re = /^\S+@\S+\.\S+$/;
       return re.test(email);
     },
+    checkUser() {
+      for (let i = 1; i <= this.lastUserId; i++) {
+        const userData = JSON.parse(localStorage.getItem(`user_${i}`));
+        if (userData) {
+          if (userData.email === this.email) {
+            this.errorsEmail.push('Este email já está cadastrado!');
+          }
+          if (userData.user === this.user) {
+            this.errorsUser.push('Este usuário já está cadastrado');
+          }
+        }
+      }
+    }
   },
+
 };
 </script>
 
