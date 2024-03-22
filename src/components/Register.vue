@@ -37,9 +37,7 @@ export default {
       errorsSenha: [],
       errorsEmail: [],
       errorsUser: [],
-      userAuth: false,
       lastUserId: parseInt(localStorage.getItem('lastUserId') || 0),
-      users: [],
     };
   },
 

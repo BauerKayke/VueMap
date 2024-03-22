@@ -1,4 +1,3 @@
-<!-- eslint-disable no-undef -->
 <template>
   <form @submit.prevent="checkForm">
     <div class="emailDiv">
@@ -20,8 +19,6 @@
 </template>
 
 <script>
-import { defineModel } from 'vue';
-const emailInput = defineModel < String > ('email');
 export default {
   name: 'FormularioLogin',
   data() {
@@ -31,8 +28,6 @@ export default {
       errorsSenha: [],
       errorsEmail: [],
       errors: [],
-      userAuth: false,
-      emailInput
     };
   },
   methods: {
