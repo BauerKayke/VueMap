@@ -114,6 +114,10 @@ button {
   font-weight: bold;
 }
 
+button:hover {
+  background-color: rgba(0, 189, 126, 0.829);
+}
+
 @media (max-width: 1200px) {
   label {
     font-size: 16px;

@@ -156,6 +156,11 @@ p {
   border: none;
 }
 
+.goOut:hover {
+  background: rgba(90, 90, 90, 0.404);
+  transform: scale(1.1);
+}
+
 @media (max-width:700px) {
   div {
     overflow: hidden;

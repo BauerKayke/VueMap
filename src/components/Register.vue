@@ -127,6 +127,16 @@ button {
   font-weight: bold;
 }
 
+button:hover {
+  background-color: rgba(0, 189, 126, 0.829);
+}
+
+@media(min-width: 1200px) {
+  input {
+    margin: 1.5vh;
+  }
+}
+
 @media(max-width:1200px) {
   label {
     width: 8vw;

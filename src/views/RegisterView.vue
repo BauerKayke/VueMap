@@ -13,4 +13,3 @@ import TitleHeader from '../components/TitleHeader.vue';
     </div>
   </main>
 </template>
-<style></style>
