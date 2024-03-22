@@ -61,9 +61,12 @@ export default {
       return re.test(email);
     },
     foundUser(users) {
+      console.log(users);
       const userFind = users.find((user) => user.email === this.email && user.senha === this.senha);
+      console.log(userFind);
       if (userFind) {
         localStorage.setItem('user', userFind.user);
+
         return true;
       } else {
         this.errorsEmail = this.email ? ['Email inválido.'] : ['Email é obrigatório.'];
