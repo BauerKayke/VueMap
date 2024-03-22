@@ -64,17 +64,23 @@ export default {
       return re.test(email);
     },
     foundUser() {
-      this.users = Object.keys(localStorage)
-        .filter((key) => key.startsWith('user_'))
-        .map((key) => JSON.parse(localStorage.getItem(key)));
-      const userFind = this.users.find((user) => user.email === this.email && user.senha === this.senha);
-      if (userFind) {
-        localStorage.setItem('user', userFind.user);
-        return true;
-      } else {
-        this.errorsEmail = this.email ? ['Email inválido.'] : ['Email é obrigatório.'];
-        this.errorsSenha = this.senha ? ['Senha inválida.'] : ['Senha é obrigatória.'];
-      }
+      const userFind = this.users.find(user => {
+        let emailValido = user.email === this.email;
+        let senhaValida = user.senha === this.senha;
+
+        if (emailValido && senhaValida) {
+          localStorage.setItem('user', user.user);
+          return true;
+        } else {
+          if (!emailValido) {
+            this.errorsEmail.push('Email inválido!');
+          }
+          if (!senhaValida && !emailValido) {
+            this.errorsSenha.push('Senha inválida!');
+          }
+        }
+      });
+      return userFind;
     },
   },
 };

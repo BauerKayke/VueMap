@@ -9,7 +9,7 @@
     </div>
     <div class="emailDiv">
       <label for="email">Email</label>
-      <input type="email" name="email" v-model="email" placeholder="Digite seu email" @input="handleInput" />
+      <input type="email" name="email" v-model="email" placeholder="Digite seu email" />
       <div class="error" v-if="errorsEmail.length > 0">
         <p v-for="(error, index) in errorsEmail" :key="index">{{ error }}</p>
       </div>
@@ -42,17 +42,16 @@ export default {
       users: [],
     };
   },
-  mounted() {
 
-    for (let i = 1; i <= this.lastUserId; i++) {
-      const userData = JSON.parse(localStorage.getItem(`user_${i}`));
-      if (userData) {
-        this.users.push(userData);
-      }
-    }
-    console.log('Usuários salvos:', this.users);
-  },
   methods: {
+    getUser() {
+      for (let i = 1; i <= this.lastUserId; i++) {
+        const userData = JSON.parse(localStorage.getItem(`user_${i}`));
+        if (userData) {
+          this.users.push(userData);
+        }
+      }
+    },
     checkForm() {
 
       this.errorsSenha = [];
