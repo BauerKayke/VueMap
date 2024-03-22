@@ -1,8 +1,9 @@
+<!-- eslint-disable no-undef -->
 <template>
   <form @submit.prevent="checkForm">
     <div class="emailDiv">
       <label for="email">Email</label>
-      <input type="email" name="email" v-model="email" placeholder="Digite seu email" />
+      <input type="email" name="email" v-model="email" placeholder="Digite seu email" ref="emailInput" />
       <div class="error" v-if="errorsEmail.length > 0">
         <p v-for="(error, index) in errorsEmail" :key="index">{{ error }}</p>
       </div>
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+import { defineModel } from 'vue';
+const emailInput = defineModel < String > ('email');
 export default {
   name: 'FormularioLogin',
   data() {
@@ -29,6 +32,7 @@ export default {
       errorsEmail: [],
       errors: [],
       userAuth: false,
+      emailInput
     };
   },
   methods: {
@@ -45,7 +49,6 @@ export default {
       } else if (this.senha.length < 3) {
         this.errorsSenha.push('A senha precisa ter mais de três caracteres');
       }
-
       if (!this.errorsEmail.length && !this.errorsSenha.length) {
         this.users = Object.keys(localStorage)
           .filter((key) => key.startsWith('user_'))

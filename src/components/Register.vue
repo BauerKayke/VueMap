@@ -44,16 +44,7 @@ export default {
   },
 
   methods: {
-    getUser() {
-      for (let i = 1; i <= this.lastUserId; i++) {
-        const userData = JSON.parse(localStorage.getItem(`user_${i}`));
-        if (userData) {
-          this.users.push(userData);
-        }
-      }
-    },
     checkForm() {
-
       this.errorsSenha = [];
       this.errorsEmail = [];
       this.errorsUser = [];
