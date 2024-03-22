@@ -55,8 +55,6 @@ export default {
           localStorage.setItem('token', token);
           this.$router.push('/map');
         }
-
-
       }
     },
     validEmail(email) {
@@ -64,22 +62,22 @@ export default {
       return re.test(email);
     },
     foundUser() {
+      let emailValido;
+      let senhaValida;
       const userFind = this.users.find(user => {
-        let emailValido = user.email === this.email;
-        let senhaValida = user.senha === this.senha;
-
+        emailValido = user.email === this.email;
+        senhaValida = user.senha === this.senha;
         if (emailValido && senhaValida) {
           localStorage.setItem('user', user.user);
-          return true;
-        } else {
-          if (!emailValido) {
-            this.errorsEmail.push('Email inválido!');
-          }
-          if (!senhaValida && !emailValido) {
-            this.errorsSenha.push('Senha inválida!');
-          }
+          return user;
         }
       });
+      if (!emailValido) {
+        this.errorsEmail.push('Email inválido!');
+      }
+      if (!senhaValida && emailValido) {
+        this.errorsSenha.push('Senha inválida!');
+      }
       return userFind;
     },
   },
