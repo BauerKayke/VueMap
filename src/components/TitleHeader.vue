@@ -76,17 +76,18 @@ header {
   justify-content: center;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
   header {
     display: flex;
     place-items: center;
-  }
-
-  header {
-    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .greetings h1,
+  .greetings h2 {
+    text-align: center;
   }
 }
 
@@ -98,7 +99,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .greetings h1,
@@ -106,15 +107,8 @@ h2 {
   text-align: center;
 }
 
-@media (min-width: 1100px) {
 
-  .greetings h1,
-  .greetings h2 {
-    text-align: center;
-  }
-}
-
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .logo {
     width: 18vw;
     height: 10vh;
@@ -128,11 +122,43 @@ h2 {
     top: 10px;
   }
 
+  h2 {
+    font-size: 1rem;
+  }
+
   nav {
     width: 100%;
     font-size: 14px;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.4rem;
+  }
+
+  .greetings h1,
+  .greetings h2 {
+    margin-top: 10px;
+  }
+}
+
+@media (max-height: 900px) and (max-width: 700px) {
+  .logo {
+    width: 40vw;
+    height: 10vh;
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    top: -5px;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  nav a {
+    font-size: 16px;
+    text-align: center;
+
   }
 
   .greetings h1,

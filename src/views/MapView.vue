@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <GMapMap :center="coords" :zoom="10" map-type-id="terrain" style="width: 90vw; height: 90vh">
+    <GMapMap :center="coords" :zoom="10" map-type-id="terrain" class="mapa">
       <GMapMarker :key="markerDetails.id" :position="markerDetails.position" :clickable="true" :draggable="false"
         @click="openMarker(markerDetails.id)">
         <GMapInfoWindow v-if="locationDetails.address != ''" :closeclick="true" @closeclick="openMarker(null)"
@@ -105,6 +105,11 @@ export default {
 };
 </script>
 <style scoped>
+.mapa {
+  width: 90vw;
+  height: 90vh
+}
+
 .search-box {
   margin: 10px 0px;
   display: flex;
@@ -124,7 +129,7 @@ export default {
 }
 
 .searchLocation {
-  width: 12vw;
+  width: 25vw;
   height: 4vh;
   padding: 10px;
   border-radius: 20px;
@@ -149,5 +154,20 @@ p {
 .goOut {
   background: none;
   border: none;
+}
+
+@media (max-width:700px) {
+  div {
+    overflow: hidden;
+  }
+
+  .mapa {
+    height: 80vh;
+    width: 80vw
+  }
+
+  .searchLocation {
+    width: 40vw;
+  }
 }
 </style>

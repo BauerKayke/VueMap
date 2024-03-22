@@ -84,15 +84,14 @@ label {
   font-size: 20px;
   font-weight: bold;
   width: 4vw;
-  /* Defina um tamanho fixo para todas as labels */
   display: inline-block;
 }
 
 input {
-  width: 15vw;
-  height: 4vh;
+  width: 20vw;
+  height: 5vh;
   margin: 2vh;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 18px;
   padding: 5px;
 }
@@ -105,9 +104,9 @@ form {
 }
 
 button {
-  height: 4vh;
+  height: 5vh;
   width: 8vw;
-  border-radius: 3px;
+  border-radius: 4px;
   margin-top: 2vh;
   background-color: hsla(160, 100%, 37%, 1);
   color: white;
@@ -115,39 +114,35 @@ button {
   font-weight: bold;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   label {
-    font-size: 18px;
-    font-weight: bold;
-    width: 6vw;
-    display: inline-block;
+    font-size: 16px;
+    width: 4vw;
   }
 
   input {
-    width: 15vw;
+    width: 30vw;
     height: 4vh;
-    margin: 2vh;
-    border-radius: 3px;
     font-size: 18px;
-    padding: 5px;
-  }
-
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
   }
 
   button {
     height: 4vh;
-    width: 8vw;
-    border-radius: 3px;
     margin-top: 1vh;
-    background-color: hsla(160, 100%, 37%, 1);
-    color: white;
     font-size: 16px;
-    font-weight: bold;
+  }
+}
+
+@media (max-width: 700px) {
+  input {
+    width: 30vw;
+    font-size: 14px;
+    display: block;
+  }
+
+  button {
+    width: 15vw;
+    font-size: 14px;
   }
 }
 </style>

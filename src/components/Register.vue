@@ -88,6 +88,13 @@ export default {
 </script>
 
 <style scoped>
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .error {
   color: red;
   font-weight: bold;
@@ -101,19 +108,12 @@ label {
 }
 
 input {
-  width: 15vw;
-  height: 4vh;
+  width: 20vw;
+  height: 5vh;
   margin: 2vh;
   border-radius: 3px;
   font-size: 18px;
   padding: 5px;
-}
-
-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
 button {
@@ -127,39 +127,50 @@ button {
   font-weight: bold;
 }
 
-@media (max-width: 1100px) {
+@media(max-width:1200px) {
   label {
-    font-size: 15px;
-    font-weight: bold;
-    width: 6vw;
-    display: inline-block;
+    width: 8vw;
+  }
+}
+
+@media (max-width: 768px) {
+
+  label {
+    font-size: 16px;
+    width: 7vw;
   }
 
   input {
-    width: 15vw;
-    height: 4vh;
-    margin: 2vh;
-    border-radius: 3px;
-    font-size: 14px;
-    padding: 5px;
-  }
-
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    width: 25vw;
   }
 
   button {
-    height: 4vh;
-    width: 8vw;
-    border-radius: 3px;
-    margin-top: 2vh;
-    background-color: hsla(160, 100%, 37%, 1);
-    color: white;
+    width: 15vw;
+  }
+}
+
+@media (max-height:900px)and (max-width: 700px) {
+  label {
+    font-size: 16px;
+    width: 7vw;
+  }
+
+  input {
+    display: block;
+    width: 50vw;
+    margin: 0.5vh;
+    font-size: 12px;
+  }
+
+  button {
+    width: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  label {
     font-size: 14px;
-    font-weight: bold;
+    width: auto;
   }
 }
 </style>
