@@ -2,7 +2,7 @@
   <form @submit.prevent="checkForm">
     <div class="emailDiv">
       <label for="email">Email</label>
-      <input type="email" name="email" v-model="email" placeholder="Digite seu email" ref="emailInput" />
+      <input type="email" name="email" v-model="email" placeholder="Digite seu email" />
       <div class="error" v-if="errorsEmail.length > 0">
         <p v-for="(error, index) in errorsEmail" :key="index">{{ error }}</p>
       </div>

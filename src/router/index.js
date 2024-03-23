@@ -30,10 +30,6 @@ const router = createRouter({
     }
   ],
 });
-window.addEventListener('popstate', () => {
-  router.push('/');
-});
-
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isMapView = to.name === 'map';
